@@ -161,4 +161,15 @@ class iTunesResponseTest extends TestCase
             $response->isRetryable()
         );
     }
+
+    public function testIOS6LatestReceiptInfo()
+    {
+        $responseString = file_get_contents(__DIR__ . '/fixtures/inAppPurchaseResponseios6.json');
+        $responseJsonDecoded = json_decode($responseString, true);
+
+        $response = new ProductionResponse($responseJsonDecoded);
+
+        $this->assertNotNull($response->getLatestReceiptInfo());
+        $this->assertEquals($response->getLatestReceiptInfo()[0]->getTransactionId(), 1000000104232856);
+    }
 }

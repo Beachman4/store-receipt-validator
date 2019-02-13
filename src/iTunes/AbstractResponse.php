@@ -379,5 +379,11 @@ abstract class AbstractResponse
         if (array_key_exists('bid', $this->raw_data['receipt'])) {
             $this->bundle_id = $this->raw_data['receipt']['bid'];
         }
+        if (array_key_exists('latest_receipt', $this->raw_data)) {
+            $this->latest_receipt = $this->raw_data['latest_receipt'];
+        }
+        if (array_key_exists('latest_receipt_info', $this->raw_data)) {
+            $this->latest_receipt_info = [new PurchaseItem($this->raw_data['latest_receipt_info'])];
+        }
     }
 }
